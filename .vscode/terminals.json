@@ -1,0 +1,25 @@
+{
+  "autorun": true,
+  "autokill": true,
+  "terminals": [
+    {
+      "name": "client",
+      "description": "client",
+      "icon": "tag",
+      "focus": true,
+      "commands": [
+        "cd client",
+        "cls"
+      ]
+    },
+    {
+      "name": "server",
+      "description": "server",
+      "focus": true,
+      "commands": [
+        "cd server",
+        "cls"
+      ]
+    }
+  ]
+}
