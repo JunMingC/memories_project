@@ -3,12 +3,15 @@ import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { ACTION_TYPES_AUTH } from '../../constants/actionTypes'
+import { ACTION_TYPES_AUTH } from '../../constants/actionTypes';
+import { signin, signup } from '../../actions/auth';
 
 import Icon from './icon';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './styles';
+
+const initialState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" };
 
 const Auth = () => {
     const classes = useStyles();
@@ -17,6 +20,7 @@ const Auth = () => {
 
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState(initialState);
 
     const handleShowPassword = param => event => {
         // pass param by currying method
@@ -27,12 +31,18 @@ const Auth = () => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
+        if (isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+        }
     };
 
-    const handleChange = () => {
-
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     const switchMode = () => {
