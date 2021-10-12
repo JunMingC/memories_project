@@ -23,7 +23,7 @@ const Auth = () => {
     const [formData, setFormData] = useState(initialState);
 
     const handleShowPassword = param => event => {
-        // pass param by currying method
+        // [Note] pass param by currying method
         if (param !== undefined) {
             setShowPassword(param);
         } else {
@@ -51,7 +51,7 @@ const Auth = () => {
     };
 
     const googleSuccess = async (res) => {
-        const result = res?.profileObj; // optional chaining operator
+        const result = res?.profileObj; // [Note] optional chaining operator
         const token = res?.tokenId;
 
         try {

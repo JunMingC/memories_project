@@ -16,8 +16,8 @@ const Navbar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
     const logout = () => {
-        // https://stackoverflow.com/questions/67429079/logout-google-account-with-react-apps
-        // use useGoogleLogout hook
+        // [ToDo] https://stackoverflow.com/questions/67429079/logout-google-account-with-react-apps
+        // [ToDo] use useGoogleLogout hook
         dispatch({ type: ACTION_TYPES_AUTH.LOGOUT });
         setUser(null);
         history.push("/");

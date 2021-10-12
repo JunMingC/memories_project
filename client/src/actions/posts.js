@@ -1,7 +1,7 @@
 import { ACTION_TYPES_POST } from '../constants/actionTypes'
 import * as api from '../api';
 
-// Action Creators
+// [Note] Action Creators
 export const getPosts = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPosts();
