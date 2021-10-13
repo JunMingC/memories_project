@@ -7,6 +7,6 @@ export const ACTION_TYPES_POST = {
 };
 
 export const ACTION_TYPES_AUTH = {
-    AUTH: 'LIKE',
+    AUTH: 'AUTH',
     LOGOUT: 'LOGOUT'
 };
