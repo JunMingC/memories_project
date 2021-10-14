@@ -13,7 +13,7 @@ export const signin = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials." });
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser.id }, "secretKey", { expiresIn: "1h" }); // [ToDo] create secretKey in .env
+        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, "secretKey", { expiresIn: "1h" }); // [ToDo] create secretKey in .env
         res.status(200).json({ result: existingUser, token });
     } catch (error) {
         res.status(500).json({ message: "Something went wrong." });
@@ -32,7 +32,7 @@ export const signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
         const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
-        const token = jwt.sign({ email: result.email, id: result.id }, "secretKey", { expiresIn: "1h" }); // [ToDo] create secretKey in .env
+        const token = jwt.sign({ email: result.email, id: result._id }, "secretKey", { expiresIn: "1h" }); // [ToDo] create secretKey in .env
 
         res.status(200).json({ result, token });
     } catch (error) {
