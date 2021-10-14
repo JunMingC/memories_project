@@ -6,6 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import useStyles from './styles';
 import memories from '../../images/memories.png';
 import { ACTION_TYPES_AUTH } from '../../constants/actionTypes'
+import decode from "jwt-decode";
 
 const Navbar = () => {
     const classes = useStyles();
@@ -24,8 +25,15 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        // JWT handling...
-        // const token = user?.token;
+        const token = user?.token;
+
+        if (token) {
+            const decodedToken = decode(token);
+
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
+                logout();
+            }
+        }
 
         setUser(JSON.parse(localStorage.getItem("profile")));
     }, [location]);
